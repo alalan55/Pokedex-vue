@@ -1,7 +1,5 @@
 <template>
   <section class="elements">
-    <!-- <InputSearch :placeholder="placeholder" v-model="pokeName"/>
-    <BtnSubmit :value="valorSubmit"/> -->
     <InputSearch
       @onkeypress="pesquisarPokemonUnico"
       placeholder="Pesquise por um pokemon"
@@ -15,6 +13,7 @@
         :pokeName="poke.name"
         :pokeImg="poke.sprites.front_default"
         :pokeType="poke.types[0].type.name.toString()"
+        @click="go(poke.id)"
       />
     </CardContainer>
   </section>
@@ -23,7 +22,6 @@
 <script>
 import { mapActions } from "vuex";
 import { CardContainer } from "@/components/bosons";
-// import { Pesquisa } from "@/components/templates";
 import { Card } from "@/components/organisms";
 import { InputSearch } from "@/components/atoms";
 
@@ -75,6 +73,10 @@ export default {
         console.error(error);
       }
     },
+    go(e){
+      this.$router.push(`/about/${e}`)
+      console.log(e)
+    }
   },
   mounted() {
     window.addEventListener("scroll", this.handleScroll);
