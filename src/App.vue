@@ -1,5 +1,5 @@
 <template>
-<Navbar/>
+<Header/>
  <router-view/>
   <div id="nav">
     <router-link to="/">Home</router-link> |
@@ -8,10 +8,10 @@
  
 </template>
 <script>
-import Navbar from "@/components/Navbar.vue";
+import {Header} from '@/components/organisms'
 export default {
    components: {
-    Navbar,
+    Header
 
   },
 }

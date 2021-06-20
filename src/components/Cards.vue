@@ -1,6 +1,4 @@
 <template>
-
-
   <div class="cards">
     <div class="card" v-for="poke of pokemons" :key="poke.id" @click="goTo(poke.id)">
       <div class="title">
@@ -38,7 +36,7 @@ export default {
       try {
         await fetch(BASE_URL).then((data) => {
           data.json().then((value) => {
-            // console.log(value);
+             console.log(value);
             value.results?.forEach((element) => {
               requestUnico(element.url);
             });
