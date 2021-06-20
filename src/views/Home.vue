@@ -1,82 +1,81 @@
 <template>
   <section class="elements">
-    <input type="text" class="pesquisar" placeholder="Pesquise um pokemon" />
-    <input type="submit" value="Pesquisar" />
+    <!-- <InputSearch :placeholder="placeholder" v-model="pokeName"/>
+    <BtnSubmit :value="valorSubmit"/> -->
+    <Pesquisa />
 
-    <Cards />
+    <CardContainer class="card__container">
+      <Card
+        v-for="poke in pokes"
+        :pokeId="poke.id"
+        :key="poke.id"
+        :pokeName="poke.name"
+        :pokeImg="poke.sprites.front_default"
+        :pokeType="poke.types[0].type.name.toString()"
+      />
+    </CardContainer>
   </section>
 </template>
 
 <script>
-// @ is an alias to /src
-import Cards from "@/components/Cards.vue";
+import { mapActions } from "vuex";
+import { CardContainer } from "@/components/bosons";
+import { Pesquisa } from "@/components/templates";
+import { Card } from "@/components/organisms";
 
 export default {
   name: "Home",
   components: {
-    // HelloWorld,  
-    Cards,
+    Pesquisa,
+    CardContainer,
+    // InputSearch,
+    Card,
+    // BtnSubmit
   },
+  data() {
+    return {
+      placeholder: "Pesquise um pokemon",
+      valorSubmit: "Pesquisar",
+    };
+  },
+  created() {
+    this.start();
+  },
+  computed: {
+    pokes() {
+      return this.$store.getters.$pokemons;
+    },
+  },
+  methods: {
+    ...mapActions(["getPokes", "loadNext"]),
+    async start() {
+      await this.$store.dispatch("getPokes");
+    },
+    async morePokes() {
+      await this.loadNext();
+    },
+    async handleScroll() {
+      let element = document.querySelector(".card__container");
+      if (element.getBoundingClientRect().bottom < window.innerHeight) {
+        await this.morePokes();
+      }
+    },
+  },
+  mounted() {
+      window.addEventListener("scroll", this.handleScroll);
+    },
+    unmounted() {
+      window.removeEventListener("scroll", this.handleScroll);
+    }
 };
 </script>
 
 <style scoped>
 .elements {
-  /* border: 1px solid; */
-  /* height: 100vh; */
   display: flex;
   flex-direction: column;
   max-width: 1200px;
   margin: 0 auto;
   padding: 2em;
-}
-.pesquisar {
-  width: 100%;
-}
-
-input[type="text"] {
-  appearance: none;
-  border: none;
-  outline: none;
-  background: none;
-  display: block;
-  width: 100%;
-  padding: 10px 15px;
-  border-radius: 8px;
-  margin-bottom: 15px;
-
-  color: #333;
-  font-size: 18px;
-  box-shadow: 0px 0px 0px rgba(0, 0, 0, 0);
-  background-color: #f3f3f3;
-  transition: 0.4s;
-}
-input[type="text"]::placeholder {
-  color: #888;
-  transition: 0.4s;
-}
-input[type="submit"] {
-  appearance: none;
-  border: none;
-  outline: none;
-  background: none;
-  display: block;
-  width: 100%;
-  padding: 10px 15px;
-  background-color: #1e1e1e;
-  border-radius: 8px;
-  color: #fff;
-  font-size: 18px;
-  font-weight: 700;
-  cursor: pointer;
-  margin-bottom: 25px;
-  transition: .2s ease-in-out;
-}
-input[type="submit"]:hover{
-  background-color: #3a3939;
-}
-
-input[type="submit"]:focus label {
-  color: #ea526f;
 }
 </style>
