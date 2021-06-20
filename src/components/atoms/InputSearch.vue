@@ -1,19 +1,34 @@
 <template>
-    <input type="text" class="pesquisar" :placeholder="placeholder" :value="modelValue"  @input="$emit('update:modelValue', $event.target.value)" />
+  <!-- <input type="text" class="pesquisar" :placeholder="placeholder" :value="modelValue"  @input="$emit('update:modelValue', $event.target.value)" @keypress="sendArgs" /> -->
+  <input
+    type="text"
+    class="pesquisar"
+    :placeholder="placeholder"
+    @keypress="sendArgs"
+    v-model="valor"
+  />
 </template>
 
 <script>
-    export default {
-        data(){
-            return{
-
-            }
-        },
-        props:{
-            placeholder: {Type: String, required: true},
-            modelValue: String
-        }
-    }
+export default {
+  data() {
+    return {
+      valor: '',
+    };
+  },
+  props: {
+    placeholder: { Type: String, required: true },
+    modelValue: String,
+  },
+  methods: {
+    sendArgs(e) {
+      if (e.key == "Enter") {
+        this.$emit("onkeypress", this.valor);
+        this.valor = '';
+      }
+    },
+  },
+};
 </script>
 
 <style lang="css" scoped>
