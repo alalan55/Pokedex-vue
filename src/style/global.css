@@ -1,0 +1,71 @@
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@100;200;300;400;500;700;800&display=swap");
+:root {
+  --body-bg: #1e1e1e;
+  --body-color: #e1e1e1;
+  --card-bg: #3d3d3d;
+  --fire: #e4064d;
+  --grass: #9dd465;
+  --eletric: #f9e45f;
+  --water: #4595ba;
+  --ground: #e4c967;
+  --rock: #cabb7b;
+  --fairy: #eeb2fa;
+  --poison: #9f619d;
+  --bug: #c5cf4a;
+  --dragon: #857af7;
+  --psychic: #e56eaf;
+  --flying: #80a4f9;
+  --fighying: #9b5a48;
+  --normal: #bab8ab;
+}
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+html {
+  font-family: "Montserrat", sans-serif;
+}
+
+.fire {
+  background: var(--fire);
+}
+.grass {
+  background: var(--grass);
+}
+.eletric {
+  background: var(--eletric);
+}
+.water {
+  background: var(--water);
+}
+.ground {
+  background: var(--ground);
+}
+.rock {
+  background: var(--rock);
+}
+.fairy {
+  background: var(--fairy);
+}
+.poison {
+  background: var(--poison);
+}
+.bug {
+  background: var(--bug);
+}
+.dragon {
+  background: var(--dragon);
+}
+.psychic {
+  background: var(--psychic);
+}
+.flying {
+  background: var(--flying);
+}
+.fighying {
+  background: var(--fighying);
+}
+.normal {
+  background: var(--normal);
+}
