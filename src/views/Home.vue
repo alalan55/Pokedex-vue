@@ -2,7 +2,10 @@
   <section class="elements">
     <!-- <InputSearch :placeholder="placeholder" v-model="pokeName"/>
     <BtnSubmit :value="valorSubmit"/> -->
-    <Pesquisa />
+    <InputSearch
+      @onkeypress="pesquisarPokemonUnico"
+      placeholder="Pesquise por um pokemon"
+    />
 
     <CardContainer class="card__container">
       <Card
@@ -20,15 +23,16 @@
 <script>
 import { mapActions } from "vuex";
 import { CardContainer } from "@/components/bosons";
-import { Pesquisa } from "@/components/templates";
+// import { Pesquisa } from "@/components/templates";
 import { Card } from "@/components/organisms";
+import { InputSearch } from "@/components/atoms";
 
 export default {
   name: "Home",
   components: {
-    Pesquisa,
+    // Pesquisa,
     CardContainer,
-    // InputSearch,
+    InputSearch,
     Card,
     // BtnSubmit
   },
@@ -47,7 +51,7 @@ export default {
     },
   },
   methods: {
-    ...mapActions(["getPokes", "loadNext"]),
+    ...mapActions(["getPokes", "loadNext", "addPokeSearch"]),
     async start() {
       await this.$store.dispatch("getPokes");
     },
@@ -60,13 +64,24 @@ export default {
         await this.morePokes();
       }
     },
+    async pesquisarPokemonUnico(e) {
+      let url = `https://pokeapi.co/api/v2/pokemon/${e}`;
+
+      try {
+        let req = await fetch(url);
+        let res = await req.json();
+        this.addPokeSearch(res);
+      } catch (error) {
+        console.error(error);
+      }
+    },
   },
   mounted() {
-      window.addEventListener("scroll", this.handleScroll);
-    },
-    unmounted() {
-      window.removeEventListener("scroll", this.handleScroll);
-    }
+    window.addEventListener("scroll", this.handleScroll);
+  },
+  unmounted() {
+    window.removeEventListener("scroll", this.handleScroll);
+  },
 };
 </script>
 

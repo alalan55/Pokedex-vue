@@ -6,6 +6,9 @@ export default createStore({
         next:''
     },
     mutations: {
+        ADD_POKE_UNICO(state, poke){
+            state.pokemons.unshift(poke)
+        },
         GET_POKES(state, pokemons) {
             if(!state.pokemons.find(el => el.id === pokemons.id)){
 
@@ -44,6 +47,9 @@ export default createStore({
             } catch (error) {
                 console.error(error)
             }
+        },
+        async addPokeSearch({commit}, poke) {
+          commit("ADD_POKE_UNICO", await poke)
         },
         async loadNext({dispatch, commit}){
             let x = this.state.next
