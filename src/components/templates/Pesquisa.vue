@@ -1,5 +1,7 @@
+// NÃO ESTA SENDO USADO
 <template>
   <div class="pesquisa">
+    <h1>estou usando esse componente</h1>
     <InputSearch :placeholder="placeholder" v-model="pokeName" />
     <BtnSubmit :value="valorSubmit" />
   </div>

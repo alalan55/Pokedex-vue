@@ -1,5 +1,4 @@
 <template>
-  <!-- <input type="text" class="pesquisar" :placeholder="placeholder" :value="modelValue"  @input="$emit('update:modelValue', $event.target.value)" @keypress="sendArgs" /> -->
   <input
     type="text"
     class="pesquisar"

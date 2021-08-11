@@ -1,96 +1,33 @@
 <template>
-  <section class="elements">
-    <!-- <InputSearch :placeholder="placeholder" v-model="pokeName"/>
-    <BtnSubmit :value="valorSubmit"/> -->
-    <InputSearch
-      @onkeypress="pesquisarPokemonUnico"
-      placeholder="Pesquise por um pokemon"
-    />
-
-    <CardContainer class="card__container">
-      <Card
-        v-for="poke in pokes"
-        :pokeId="poke.id"
-        :key="poke.id"
-        :pokeName="poke.name"
-        :pokeImg="poke.sprites.front_default"
-        :pokeType="poke.types[0].type.name.toString()"
-      />
-    </CardContainer>
-  </section>
+  <div class="home">
+    <HomeTemplate :pokes="pokes"/>
+  </div>
 </template>
 
 <script>
 import { mapActions } from "vuex";
-import { CardContainer } from "@/components/bosons";
-// import { Pesquisa } from "@/components/templates";
-import { Card } from "@/components/organisms";
-import { InputSearch } from "@/components/atoms";
+import { HomeTemplate } from "@/components/templates";
 
 export default {
   name: "Home",
   components: {
-    // Pesquisa,
-    CardContainer,
-    InputSearch,
-    Card,
-    // BtnSubmit
+    HomeTemplate,
   },
-  data() {
-    return {
-      placeholder: "Pesquise um pokemon",
-      valorSubmit: "Pesquisar",
-    };
-  },
-  created() {
+  created(){
     this.start();
   },
-  computed: {
+    computed: {
     pokes() {
       return this.$store.getters.$pokemons;
     },
   },
-  methods: {
-    ...mapActions(["getPokes", "loadNext", "addPokeSearch"]),
+  methods:{
+     ...mapActions(["getPokes"]),
+     
     async start() {
       await this.$store.dispatch("getPokes");
     },
-    async morePokes() {
-      await this.loadNext();
-    },
-    async handleScroll() {
-      let element = document.querySelector(".card__container");
-      if (element.getBoundingClientRect().bottom < window.innerHeight) {
-        await this.morePokes();
-      }
-    },
-    async pesquisarPokemonUnico(e) {
-      let url = `https://pokeapi.co/api/v2/pokemon/${e}`;
-
-      try {
-        let req = await fetch(url);
-        let res = await req.json();
-        this.addPokeSearch(res);
-      } catch (error) {
-        console.error(error);
-      }
-    },
-  },
-  mounted() {
-    window.addEventListener("scroll", this.handleScroll);
-  },
-  unmounted() {
-    window.removeEventListener("scroll", this.handleScroll);
-  },
+  }
 };
 </script>
 
-<style scoped>
-.elements {
-  display: flex;
-  flex-direction: column;
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 2em;
-}
-</style>

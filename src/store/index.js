@@ -7,11 +7,12 @@ export default createStore({
     },
     mutations: {
         ADD_POKE_UNICO(state, poke){
-            state.pokemons.unshift(poke)
+            if(!state.pokemons.find(e => e.id == poke.id)){
+                state.pokemons.unshift(poke)
+            }
         },
         GET_POKES(state, pokemons) {
             if(!state.pokemons.find(el => el.id === pokemons.id)){
-
                 state.pokemons.push(pokemons)
             }
         },
@@ -42,7 +43,7 @@ export default createStore({
             try {
                 let req = await fetch(payload);
                 let res = await req.json()
-
+               
                 context.commit('GET_POKES', res)
             } catch (error) {
                 console.error(error)
