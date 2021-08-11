@@ -17,6 +17,8 @@
   --flying: #80a4f9;
   --fighying: #9b5a48;
   --normal: #bab8ab;
+  --ghost: #743759;
+  --ice: #b5eef0;
 }
 * {
   margin: 0;
@@ -33,8 +35,11 @@ html {
 .grass {
   background: var(--grass);
 }
-.eletric {
+.electric {
   background: var(--eletric);
+}
+.ice {
+  background: var(--ice);
 }
 .water {
   background: var(--water);
@@ -44,6 +49,9 @@ html {
 }
 .rock {
   background: var(--rock);
+}
+.ghost{
+  background: var(--ghost);
 }
 .fairy {
   background: var(--fairy);
@@ -63,7 +71,7 @@ html {
 .flying {
   background: var(--flying);
 }
-.fighying {
+.fighting {
   background: var(--fighying);
 }
 .normal {
