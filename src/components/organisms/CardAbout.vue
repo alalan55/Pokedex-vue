@@ -1,18 +1,21 @@
 <template>
   <div class="peso">
-            <span>Peso</span>
-            <p>{{ $peso }} kg</p>
-          </div>
-          <div class="altura">
-            <span>Altura</span>
-            <p>{{ $altura }} m</p>
-          </div>
-          <div class="habilidades">
-            <span>Habilidades</span>
-            <p>{{ pokemon.abilities[0].ability.name }}</p>
-          </div>
-  <div class="card-poke">
+    <span>Peso</span>
+    <p>{{ $peso }} kg</p>
+  </div>
 
+  <div class="altura">
+    <span>Altura</span>
+    <p>{{ $altura }} m</p>
+  </div>
+
+  <!-- <div class="habilidades">
+    <span>Habilidades</span>
+    <p>{{ $habilidade }}</p>
+  </div> -->
+  <span></span>
+  
+  <div class="card-poke">
     <div class="name-and-id">
       <h3>
         <span class="name">{{ pokemon.name }}</span>
@@ -24,13 +27,8 @@
       <figure class="img">
         <img :src="pokemon.sprites?.front_default" :alt="pokemon.name" />
       </figure>
-        <div class="atributes">
-           
-        </div>
-
-
+      <div class="atributes"></div>
     </div>
-
   </div>
 </template>
 
@@ -43,6 +41,9 @@ export default {
     },
     $altura() {
       return (this.pokemon.height * 10) / 100;
+    },
+    $habilidade() {
+      return this.pokemon.abilities[0].ability.name;
     },
   },
 };
@@ -91,8 +92,7 @@ export default {
   justify-content: space-between;
 }
 
-.atributes>div{
-    flex: 1 1 100px;
+.atributes > div {
+  flex: 1 1 100px;
 }
-
 </style>

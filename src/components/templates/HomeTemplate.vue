@@ -44,7 +44,7 @@ export default {
       placeholder: "Pesquise um pokemon",
       valorSubmit: "Pesquisar",
       pokeNotFound: false,
-      pokeExist:false
+      pokeExist: false,
     };
   },
   methods: {
@@ -66,8 +66,8 @@ export default {
       try {
         req = await fetch(url);
         let res = await req.json();
-        
-          !this.pokes.find(e => e.id == res.id) ? this.addPokeSearch(res) : this.timeOutMesageExist()
+
+        !this.pokes.find((e) => e.id == res.id) ? this.addPokeSearch(res) : this.timeOutMesageExist();
       } catch (error) {
         console.error(error);
         this.timeOutMesage();
@@ -99,18 +99,18 @@ export default {
 </script>
 
 <style scoped>
-.message-error{
+.message-error {
   text-align: center;
   background: rgb(221, 77, 77);
   color: white;
-  padding: .7rem 0;
+  padding: 0.7rem 0;
   border-radius: 5px;
 }
-.message-warning{
-   text-align: center;
+.message-warning {
+  text-align: center;
   background: rgb(201, 186, 47);
   color: white;
-  padding: .7rem 0;
+  padding: 0.7rem 0;
   border-radius: 5px;
 }
 .elements {
