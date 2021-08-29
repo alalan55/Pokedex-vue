@@ -24,6 +24,8 @@ export default {
     async buscarDados() {
       const retorno = await fetch(`${this.BASE_URL}${this.id}`);
       this.pokemon = await retorno.json();
+
+      console.log(this.pokemon.abilities[0].ability.name)
     }
   }
 }
