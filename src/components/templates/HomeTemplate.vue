@@ -14,11 +14,10 @@
     <CardContainer class="card__container">
       <Card
         v-for="poke in pokes"
-        :pokeId="poke.id"
         :key="poke.id"
-        :pokeName="poke.name"
         :pokeImg="poke.sprites.front_default"
         :pokeType="poke.types[0].type.name.toString()"
+        :pokemon="poke"
         @click="go(poke.id)"
       />
     </CardContainer>
@@ -67,7 +66,9 @@ export default {
         req = await fetch(url);
         let res = await req.json();
 
-        !this.pokes.find((e) => e.id == res.id) ? this.addPokeSearch(res) : this.timeOutMesageExist();
+        !this.pokes.find((e) => e.id == res.id)
+          ? this.addPokeSearch(res)
+          : this.timeOutMesageExist();
       } catch (error) {
         console.error(error);
         this.timeOutMesage();
@@ -86,7 +87,7 @@ export default {
       }, 5000);
     },
     go(e) {
-      this.$router.push(`/about/${e}`);
+      this.$router.push({ name: "About", params: { id: e } });
     },
   },
   mounted() {
