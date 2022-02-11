@@ -1,23 +1,27 @@
 <template>
-    <div class="card">
-      <div class="title">
-        <h2>{{ pokeName}}</h2>
-       
-        <small>#{{ pokeId }}</small>
-      </div>
-      <div class="img" :class="pokeType">
-        <img :src="pokeImg" :alt="pokeName" />
-      </div>
-      <div class="type">
-         <p>{{ pokeType }}</p>
-      </div>
+  <div class="card">
+    <div class="title">
+      <h2>{{ pokemon.name }}</h2>
+
+      <small>#{{ pokemon.id }}</small>
     </div>
+    <div class="img" :class="pokeType">
+      <img :src="pokeImg" :alt="pokemon.name" />
+    </div>
+    <div class="type">
+      <p>{{ pokeType }}</p>
+    </div> 
+  </div>
 </template>
 
 <script>
-    export default {
-        props:['pokeName', 'pokeId','pokeType','pokeImg'],
-    }
+export default {
+  props: {
+    pokemon: { type: Object, required: true },
+    pokeImg: { type: String, required: true },
+    pokeType:{type: String, required: true}
+  },
+};
 </script>
 
 <style lang="css" scoped>
@@ -97,5 +101,4 @@
     width: 120px;
   }
 }
-
 </style>
