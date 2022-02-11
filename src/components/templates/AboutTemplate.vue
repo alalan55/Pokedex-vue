@@ -1,29 +1,34 @@
 <template>
   <div class="container" v-if="pokemon">
     <div class="card-informacoes">
-      <div class="img-poke">
-        <figure>
+      <div class="name-pokemon">
+        <span>
+          {{ pokemon.name }} <span class="normal">#{{ pokemon.id }}</span>
+        </span>
+      </div>
+      <div class="wrapper-content">
+        <div class="img-poke">
+          <figure>
             <img :src="pokemon.sprites?.front_default" :alt="pokemon.name" />
-        </figure>
-
+          </figure>
+        </div>
+        <div class="dinamycs-components">
+          <DinamycsInfosPoke/>
+        </div>
       </div>
-      <div class="dinamycs-components">
-
-      </div>
-
     </div>
 
-
-        <!-- <CardAbout :pokemon="pokemon"/> -->
- 
+    <!-- <CardAbout :pokemon="pokemon"/> -->
   </div>
   <div v-else>Carregando...</div>
 </template>
 <script>
 //import {CardAbout} from '@/components/organisms'
+import { DinamycsInfosPoke } from "@/components/organisms";
 export default {
   components: {
     //  CardAbout,
+    DinamycsInfosPoke
   },
   data() {
     return {
@@ -41,51 +46,81 @@ export default {
       this.pokemon = await retorno.json();
 
       // console.log(this.pokemon.abilities[0].ability.name)
-    }
-  }
-}
+    },
+  },
+};
 </script>
 <style  scoped>
 .container {
   width: 100%;
   min-height: calc(100vh - 70px);
   padding: 2rem;
-  border: 1px solid red;
+  /* border: 1px solid red; */
+  display: flex;
+  gap: 0.5rem;
+  align-items: center;
+  justify-content: center;
+}
+.card-informacoes {
+  border: 1px solid;
+  border-radius: 20px;
+  height: 75vh;
+  width: 100%;
+}
+.name-pokemon {
+  border-radius: 20px;
+  /* border: 1px solid blue; */
+  height: 10vh;
   display: flex;
   align-items: center;
   justify-content: center;
 }
-.card-informacoes{
-  border-radius: 20px;
-  border: 1px solid blue;
-  min-height: 75vh;
+.name-pokemon span {
+  font-weight: 900;
+  font-size: 1.3em;
+  text-transform: uppercase;
+}
+.name-pokemon span .normal {
+  background: none;
+  font-weight: 500;
+  font-size: 0.9em;
+  padding-left: 0.4rem;
+}
+.wrapper-content {
   width: 100%;
+  min-height: 55vh;
   display: flex;
   align-items: center;
   justify-content: center;
   flex-wrap: wrap;
+  gap: 0.5rem;
+  /* border: 1px solid red; */
 }
-.card-informacoes>div{
+.wrapper-content > div {
   border-radius: 20px;
-  min-height: 75vh;
   flex: 1 1 200px;
+  /* border: 1px solid orange; */
+  padding: 0.5rem;
+  height: 100%;
 }
-.img-poke{
-  border: 1px solid red;
+.img-poke {
   display: flex;
   align-items: center;
   justify-content: center;
 }
-.img-poke figure{
+.img-poke figure {
   width: 100%;
-  min-height: 75vh;
   display: flex;
   align-items: center;
   justify-content: center;
 }
-.img-poke figure img{
+.img-poke figure img {
   width: 80%;
 }
 
-
+@media screen and (min-width: 500px) {
+  .wrapper-content {
+    height: 65vh;
+  }
+}
 </style>
