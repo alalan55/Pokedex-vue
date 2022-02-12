@@ -1,6 +1,6 @@
 <template>
   <div class="container" v-if="pokemon">
-    <div class="card-informacoes">
+    <div class="card-informacoes" :class="pokeType">
       <div class="name-pokemon">
         <span>
           {{ pokemon.name }} <span class="normal">#{{ pokemon.id }}</span>
@@ -13,7 +13,7 @@
           </figure>
         </div>
         <div class="dinamycs-components">
-          <DinamycsInfosPoke/>
+          <DinamycsInfosPoke :pokemonInfo="pokemon" />
         </div>
       </div>
     </div>
@@ -28,12 +28,13 @@ import { DinamycsInfosPoke } from "@/components/organisms";
 export default {
   components: {
     //  CardAbout,
-    DinamycsInfosPoke
+    DinamycsInfosPoke,
   },
   data() {
     return {
       BASE_URL: "https://pokeapi.co/api/v2/pokemon/",
       id: this.$route.params.id,
+      pokeType: this.$route.params.poketype,
       pokemon: {},
     };
   },
@@ -62,7 +63,7 @@ export default {
   justify-content: center;
 }
 .card-informacoes {
-  border: 1px solid;
+  /* border: 1px solid; */
   border-radius: 20px;
   height: 75vh;
   width: 100%;
@@ -79,6 +80,7 @@ export default {
   font-weight: 900;
   font-size: 1.3em;
   text-transform: uppercase;
+  color: white;
 }
 .name-pokemon span .normal {
   background: none;

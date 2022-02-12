@@ -18,7 +18,7 @@
         :pokeImg="poke.sprites.front_default"
         :pokeType="poke.types[0].type.name.toString()"
         :pokemon="poke"
-        @click="go(poke.id)"
+        @click="goToDetail(poke.id, poke.types[0].type.name.toString())"
       />
     </CardContainer>
   </section>
@@ -86,8 +86,8 @@ export default {
         this.pokeExist = false;
       }, 5000);
     },
-    go(e) {
-      this.$router.push({ name: "About", params: { id: e } });
+    goToDetail(e, poketype) {
+      this.$router.push({ name: "About", params: { id: e, poketype: poketype } });
     },
   },
   mounted() {
