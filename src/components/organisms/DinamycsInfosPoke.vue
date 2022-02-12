@@ -33,12 +33,12 @@
       </div>
 
       <div class="components">
-        <keep-alive>
+      
           <component
             v-bind:pokeInfo="pokemonInfo"
             :is="components[state]"
           ></component>
-        </keep-alive>
+    
       </div>
     </div>
   </div>
