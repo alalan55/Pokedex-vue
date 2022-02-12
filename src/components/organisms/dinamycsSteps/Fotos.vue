@@ -1,6 +1,5 @@
 <template>
   <div class="galeria">
-      <h1>{{stateGallery}}</h1>
     <div class="btns-acoes">
       <button @click="avancar">Ir</button>
       <button @click="voltar">Voltar</button>
@@ -37,8 +36,6 @@ export default {
       })
     );
 
-    console.log(pokeImages.value)
-
     const filtered = pokeImages.value.filter((i) => i);
 
     function avancar() {
@@ -62,7 +59,7 @@ export default {
 <style scoped>
 .galeria {
   border: 1px solid red;
-  height: 55vh;
+  /* height: 55vh; */
   overflow: hidden;
 }
 .itens-galeria {
