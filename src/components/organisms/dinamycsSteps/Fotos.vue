@@ -96,7 +96,11 @@ export default {
 
 <style scoped>
 .galeria {
-  /* height: 55vh; */
+  height: 40vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
   overflow: hidden;
   position: relative;
 }
