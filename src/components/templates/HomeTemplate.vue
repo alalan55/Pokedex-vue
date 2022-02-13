@@ -12,6 +12,7 @@
     </div>
 
     <CardContainer class="card__container">
+     
       <Card
         v-for="poke in pokes"
         :key="poke.id"
@@ -20,6 +21,11 @@
         :pokemon="poke"
         @click="goToDetail(poke.id, poke.types[0].type.name.toString())"
       />
+      <div class="loading" v-if="loading">
+        <h1 >
+        Carregando...
+      </h1>
+      </div>
     </CardContainer>
   </section>
 </template>
@@ -44,13 +50,16 @@ export default {
       valorSubmit: "Pesquisar",
       pokeNotFound: false,
       pokeExist: false,
+      loading: false,
     };
   },
   methods: {
     ...mapActions(["loadNext", "addPokeSearch"]),
 
     async morePokes() {
+      this.loading = true
       await this.loadNext();
+      this.loading = false
     },
     async handleScroll() {
       let element = document.querySelector(".card__container");
@@ -120,5 +129,25 @@ export default {
   max-width: 1200px;
   margin: 0 auto;
   padding: 2em;
+}
+
+
+@media screen and (max-width: 1244px) {
+  .loading {
+    width: calc(50% - 20px);
+    display: flex;
+    align-items: center;
+    padding: .5rem;
+  }
+}
+
+/* até o tamanho de 768px  celulares */
+@media screen and (max-width: 768px) {
+  .loading {
+    width: calc(100% - 20px);
+        display: flex;
+    align-items: center;
+    padding: .5rem;
+  }
 }
 </style>
