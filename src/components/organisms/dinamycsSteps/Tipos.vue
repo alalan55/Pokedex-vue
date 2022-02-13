@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <div class="tipos">
         <span>Tipos</span>
     </div>
 </template>
@@ -11,5 +11,7 @@
 </script>
 
 <style  scoped>
-
+.tipos{
+    height: 40vh;
+}
 </style>

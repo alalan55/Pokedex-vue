@@ -29,6 +29,7 @@ export default {
   border: 1px solid red;
   height: 100%;
   color: white;
+  height: 40vh;
 }
 .title {
   margin: 0.5rem 0;

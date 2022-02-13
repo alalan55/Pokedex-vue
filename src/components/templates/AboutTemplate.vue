@@ -17,17 +17,13 @@
         </div>
       </div>
     </div>
-
-    <!-- <CardAbout :pokemon="pokemon"/> -->
   </div>
   <div v-else>Carregando...</div>
 </template>
 <script>
-//import {CardAbout} from '@/components/organisms'
 import { DinamycsInfosPoke } from "@/components/organisms";
 export default {
   components: {
-    //  CardAbout,
     DinamycsInfosPoke,
   },
   data() {
@@ -45,8 +41,6 @@ export default {
     async buscarDados() {
       const retorno = await fetch(`${this.BASE_URL}${this.id}`);
       this.pokemon = await retorno.json();
-
-      // console.log(this.pokemon.abilities[0].ability.name)
     },
   },
 };
@@ -65,7 +59,7 @@ export default {
 .card-informacoes {
   /* border: 1px solid; */
   border-radius: 20px;
-  height: 75vh;
+  height: auto;
   width: 100%;
 }
 .name-pokemon {
@@ -90,13 +84,12 @@ export default {
 }
 .wrapper-content {
   width: 100%;
-  min-height: 55vh;
+  height: auto;
   display: flex;
   align-items: center;
   justify-content: center;
   flex-wrap: wrap;
   gap: 0.5rem;
-  /* border: 1px solid red; */
 }
 .wrapper-content > div {
   border-radius: 20px;
@@ -117,12 +110,16 @@ export default {
   justify-content: center;
 }
 .img-poke figure img {
-  width: 80%;
+  width: 70%;
 }
 
 @media screen and (min-width: 500px) {
   .wrapper-content {
-    height: 65vh;
+    height:auto;
   }
+  .card-informacoes {
+  border-radius: 20px;
+  height: 75vh;
+}
 }
 </style>

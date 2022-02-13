@@ -1,5 +1,5 @@
 <template>
-  <div class="galeria">
+  <div class="stats">
     <div class="btns-acoes">
       <div class="item" v-for="(stat, index) in statsData" :key="index">
         <span class="title">
@@ -46,9 +46,11 @@ export default {
 </script>
 
 <style scoped>
-.galeria {
+.stats {
   border: 1px solid red;
   overflow: hidden;
+  height: 40vh;
+  overflow-y: scroll;
 }
 .item{
   margin: .5rem 0;
@@ -58,7 +60,7 @@ export default {
   display: block;
   font-weight: 500;
 }
-.itens-galeria {
+.itens-stats {
   display: flex;
   align-items: center;
   justify-content: center;
